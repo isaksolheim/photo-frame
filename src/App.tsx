@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 
 import PhotoCamera from './components/PhotoCamera';
 import Image from './components/Image';
 
 function App() {
   const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/').then((res: any) => {
+      setImages(res.data.images);
+    });
+  }, []);
+
   return (
     <Router>
       <div className='App'>
         <Switch>
-          <Route exact path='/' component={() => <Image images={images} />} />
           <Route
-            path='/create'
-            component={() => (
-              <PhotoCamera images={images} setImages={setImages} />
-            )}
+            exact
+            path='/'
+            component={() => <Image images={images} setImages={setImages} />}
           />
+          <Route path='/create' component={() => <PhotoCamera />} />
         </Switch>
       </div>
     </Router>

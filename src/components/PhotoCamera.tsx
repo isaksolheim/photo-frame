@@ -1,20 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 
-interface Props {
-  images: string[];
-  setImages: Function;
-}
-
-const PhotoCamera: React.FC<Props> = ({ images, setImages }) => {
+const PhotoCamera = () => {
   return (
     <div className='photo-camera'>
       <Camera
         onTakePhoto={(uri: string) => {
-          setImages([...images, uri]);
+          axios.post('http://localhost:3001/create', {
+            data: uri
+          });
         }}
       />
       <Link to='/'>home</Link>
