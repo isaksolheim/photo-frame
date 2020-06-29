@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 
-const PhotoCamera = () => {
-  const [photoUri, setPhotoUri] = useState('');
+interface Props {
+  images: string[];
+  setImages: Function;
+}
 
+const PhotoCamera: React.FC<Props> = ({ images, setImages }) => {
   return (
     <div className='photo-camera'>
       <Camera
         onTakePhoto={(uri: string) => {
-          setPhotoUri(uri);
+          setImages([...images, uri]);
         }}
       />
-      <img src={photoUri} alt='random' />
     </div>
   );
 };
