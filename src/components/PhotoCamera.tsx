@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 
@@ -15,6 +17,7 @@ const PhotoCamera: React.FC<Props> = ({ images, setImages }) => {
           setImages([...images, uri]);
         }}
       />
+      <Link to='/'>home</Link>
     </div>
   );
 };
