@@ -18,12 +18,12 @@ function App() {
     <Router>
       <div className='App'>
         <Switch>
+          <Route exact path='/' component={() => <PhotoCamera />} />
           <Route
             exact
-            path='/'
+            path='/gallery'
             component={() => <Image images={images} setImages={setImages} />}
           />
-          <Route path='/create' component={() => <PhotoCamera />} />
         </Switch>
       </div>
     </Router>
