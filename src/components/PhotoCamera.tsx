@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Camera from 'react-html5-camera-photo';
@@ -15,7 +14,6 @@ const PhotoCamera = () => {
           });
         }}
       />
-      <Link to='/'>home</Link>
     </div>
   );
 };
