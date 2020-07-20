@@ -14,11 +14,13 @@ const Image: React.FC<Props> = ({ images, setImages }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let newRandomIndex = getRandomInt(images.length);
-      while (newRandomIndex === randomIndex) {
-        newRandomIndex = getRandomInt(images.length);
+      if (images.length !== 0) {
+        let newRandomIndex = getRandomInt(images.length);
+        while (newRandomIndex === randomIndex) {
+          newRandomIndex = getRandomInt(images.length);
+        }
+        setRandomIndex(newRandomIndex);
       }
-      setRandomIndex(newRandomIndex);
     }, 3000);
     return () => clearInterval(interval);
   }, [images.length, randomIndex, setImages]);
